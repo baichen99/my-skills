@@ -1,0 +1,35 @@
+# Python bytecode/cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Tooling/cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+
+# Runtime/log/temp
+*.log
+*.tmp
+*.temp
+
+# Generated reports and exports
+*.html
+info-source-daily-*.md
+ai-daily-*.md
+ai-daily-*.html
+
+# Local secrets/config
+.env
+.env.*
+*.local

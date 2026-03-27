@@ -1,0 +1,21 @@
+---
+id: farmer-com-cn
+name: 中国农业新闻网
+access:
+  url: https://www.farmer.com.cn/
+  needsBrowser: true
+  waitFor: ".news-list li"
+extraction:
+  listSelector: ".news-list li"
+  fields:
+    title:
+      selector: "a"
+      attribute: "title"
+    url:
+      selector: "a"
+      attribute: "href"
+    publishedAt:
+      selector: ".time"
+pagination:
+  enabled: false
+---
