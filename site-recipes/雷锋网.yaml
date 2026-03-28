@@ -1,0 +1,43 @@
+id: leiphone
+name: 雷锋网
+description: 雷锋网的AI新闻和科技资讯
+
+access:
+  url: https://www.leiphone.com/tag/ai
+  needsBrowser: true
+
+  waitFor:
+    selector: '.article-item'
+    timeout: 10000
+
+extraction:
+  listSelector: '.article-item'
+
+  fields:
+    title:
+      selector: '.article-item-title'
+      type: text
+
+    url:
+      selector: '.article-item-title'
+      type: attribute
+      attribute: href
+
+    description:
+      selector: '.article-item-summary'
+      type: text
+
+    publishedAt:
+      selector: '.article-item-time'
+      type: text
+      optional: true
+
+    source:
+      selector: '.article-item-source'
+      type: text
+      optional: true
+
+notes: |
+  - 雷锋网是中国知名的科技媒体
+  - AI新闻覆盖范围广泛，包括产业动态和产品发布
+  - 需要浏览器渲染，页面内容动态加载

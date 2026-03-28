@@ -1,0 +1,39 @@
+id: venturebeat-ai
+name: VentureBeat AI新闻
+description: VentureBeat的AI相关新闻和分析
+
+access:
+  url: https://venturebeat.com/ai/
+  needsBrowser: false
+
+extraction:
+  listSelector: '.ArticleListing__post'
+
+  fields:
+    title:
+      selector: '.ArticleListing__post__title a'
+      type: text
+
+    url:
+      selector: '.ArticleListing__post__title a'
+      type: attribute
+      attribute: href
+
+    description:
+      selector: '.ArticleListing__post__excerpt'
+      type: text
+
+    publishedAt:
+      selector: '.ArticleListing__post__time'
+      type: text
+      optional: true
+
+    source:
+      selector: '.ArticleListing__post__author'
+      type: text
+      optional: true
+
+notes: |
+  - VentureBeat是专注于科技和创业的新闻网站
+  - AI频道提供深度分析和行业趋势
+  - 页面使用固定布局，内容提取稳定

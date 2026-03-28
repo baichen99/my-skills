@@ -1,0 +1,39 @@
+id: aihub-today
+name: AI Hub Today
+description: AI Hub Today的每日AI新闻汇总
+
+access:
+  url: https://ai.hubtoday.app/blog/index.xml
+  needsBrowser: false
+
+extraction:
+  listSelector: 'item'
+  isXml: true
+
+  fields:
+    title:
+      selector: 'title'
+      type: text
+
+    url:
+      selector: 'link'
+      type: text
+
+    description:
+      selector: 'description'
+      type: text
+
+    publishedAt:
+      selector: 'pubDate'
+      type: text
+      optional: true
+
+    content:
+      selector: 'content:encoded'
+      type: text
+      optional: true
+
+notes: |
+  - 每日AI新闻汇总，格式为RSS
+  - 内容覆盖AI领域的重要事件和趋势
+  - 适合快速获取每日AI新闻概览

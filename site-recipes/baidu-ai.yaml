@@ -1,0 +1,43 @@
+id: baidu-ai
+name: 百度AI新闻
+description: 百度AI的最新动态和新闻
+
+access:
+  url: https://ai.baidu.com/news
+  needsBrowser: true
+
+  waitFor:
+    selector: '.news-item'
+    timeout: 10000
+
+extraction:
+  listSelector: '.news-item'
+
+  fields:
+    title:
+      selector: '.news-item-title'
+      type: text
+
+    url:
+      selector: '.news-item-title'
+      type: attribute
+      attribute: href
+
+    description:
+      selector: '.news-item-summary'
+      type: text
+
+    publishedAt:
+      selector: '.news-item-time'
+      type: text
+      optional: true
+
+    source:
+      selector: '.news-item-source'
+      type: text
+      optional: true
+
+notes: |
+  - 百度AI是中国领先的AI技术公司
+  - 新闻内容涵盖百度AI产品和技术进展
+  - 需要浏览器渲染，页面内容动态加载

@@ -1,0 +1,55 @@
+id: readhub-daily
+name: Readhub 每日早报
+description: Readhub 每日科技新闻早报
+
+access:
+  url: https://readhub.cn/daily
+  needsBrowser: true
+
+  waitFor:
+    selector: '.mt-3'
+    timeout: 10000
+
+extraction:
+  listSelector: '.mt-3 .relative > div'
+
+  # 备用选择器，主选择器失效时自动尝试
+  fallbackSelectors:
+    listSelector:
+      - '.daily-list .item'
+      - '.news-list > div'
+      - 'main .card'
+
+  fields:
+    title:
+      selector: 'a'
+      type: text
+      fallbackSelectors: ['h3', '.title', '.news-title']
+
+    url:
+      selector: 'a'
+      type: attribute
+      attribute: href
+      transform: resolveUrl
+      baseUrl: https://readhub.cn
+      fallbackSelectors: ['h3 a', '.title a', '.news-title a']
+
+    publishedAt:
+      selector: 'time'
+      type: attribute
+      attribute: datetime
+      optional: true
+      fallbackSelectors: ['.date', '.publish-time', '.time']
+
+# 自定义请求头，应对反爬
+customHeaders:
+  User-Agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+  Referer: 'https://readhub.cn/'
+
+# 请求速率限制，单位秒
+rateLimit: 1
+
+notes: |
+  - 页面结构简单，每个新闻卡片包含标题链接
+  - 部分发布时间可能为空
+  - 需要浏览器渲染获取完整内容

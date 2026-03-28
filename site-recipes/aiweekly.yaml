@@ -1,0 +1,39 @@
+id: aiweekly
+name: AI Weekly
+description: AI Weekly的每周AI新闻汇总
+
+access:
+  url: https://aiweekly.co/
+  needsBrowser: false
+
+extraction:
+  listSelector: '.post'
+
+  fields:
+    title:
+      selector: '.post-title a'
+      type: text
+
+    url:
+      selector: '.post-title a'
+      type: attribute
+      attribute: href
+
+    description:
+      selector: '.post-excerpt'
+      type: text
+
+    publishedAt:
+      selector: '.post-date'
+      type: text
+      optional: true
+
+    source:
+      selector: '.post-author'
+      type: text
+      optional: true
+
+notes: |
+  - AI Weekly是一个专注于AI领域的新闻汇总网站
+  - 每周更新，包含AI研究和行业动态
+  - 页面结构简洁，适合自动化抓取

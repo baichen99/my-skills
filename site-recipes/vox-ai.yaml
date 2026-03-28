@@ -1,0 +1,39 @@
+id: vox-ai
+name: Vox AI新闻
+description: Vox的AI相关新闻和分析
+
+access:
+  url: https://www.vox.com/artificial-intelligence
+  needsBrowser: false
+
+extraction:
+  listSelector: '.c-compact-river__entry'
+
+  fields:
+    title:
+      selector: '.c-entry-title'
+      type: text
+
+    url:
+      selector: '.c-entry-title'
+      type: attribute
+      attribute: href
+
+    description:
+      selector: '.c-entry-summary'
+      type: text
+
+    publishedAt:
+      selector: '.c-byline__item'
+      type: text
+      optional: true
+
+    source:
+      selector: '.c-byline__item'
+      type: text
+      optional: true
+
+notes: |
+  - Vox是美国知名的新闻网站
+  - AI内容涵盖技术、政策和社会影响
+  - 页面结构稳定，适合自动化抓取

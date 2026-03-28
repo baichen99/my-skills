@@ -1,0 +1,39 @@
+id: juya-ai-daily
+name: Juya AI早报
+description: Juya的每日AI早报RSS源
+
+access:
+  url: https://imjuya.github.io/juya-ai-daily/rss.xml
+  needsBrowser: false
+
+extraction:
+  listSelector: 'item'
+  isXml: true
+
+  fields:
+    title:
+      selector: 'title'
+      type: text
+
+    url:
+      selector: 'link'
+      type: text
+
+    description:
+      selector: 'description'
+      type: text
+
+    publishedAt:
+      selector: 'pubDate'
+      type: text
+      optional: true
+
+    content:
+      selector: 'content:encoded'
+      type: text
+      optional: true
+
+notes: |
+  - 标准RSS 2.0格式，每日更新一次
+  - 内容包含完整的AI早报，分类清晰
+  - 每个item对应一天的早报内容

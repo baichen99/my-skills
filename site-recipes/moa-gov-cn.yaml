@@ -1,0 +1,22 @@
+---
+id: moa-gov-cn
+name: 农业农村部官网
+access:
+  url: http://www.moa.gov.cn/xw/bmdt/
+  needsBrowser: true
+  waitFor: ".zsyw_list li"
+extraction:
+  listSelector: ".zsyw_list li"
+  fields:
+    title:
+      selector: "a"
+      attribute: "title"
+    url:
+      selector: "a"
+      attribute: "href"
+      prefix: "http://www.moa.gov.cn/xw/bmdt/"
+    publishedAt:
+      selector: ".date"
+pagination:
+  enabled: false
+---

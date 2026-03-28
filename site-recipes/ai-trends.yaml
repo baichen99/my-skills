@@ -1,0 +1,39 @@
+id: ai-trends
+name: AI Trends
+description: AI Trends的AI行业新闻和分析
+
+access:
+  url: https://aitrends.com/
+  needsBrowser: false
+
+extraction:
+  listSelector: '.post'
+
+  fields:
+    title:
+      selector: '.post-title a'
+      type: text
+
+    url:
+      selector: '.post-title a'
+      type: attribute
+      attribute: href
+
+    description:
+      selector: '.post-excerpt'
+      type: text
+
+    publishedAt:
+      selector: '.post-date'
+      type: text
+      optional: true
+
+    source:
+      selector: '.post-author'
+      type: text
+      optional: true
+
+notes: |
+  - AI Trends是一个专注于AI行业趋势的新闻网站
+  - 内容覆盖AI技术、应用和商业发展
+  - 页面结构稳定，适合自动化抓取
