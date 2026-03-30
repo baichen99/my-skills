@@ -1,0 +1,137 @@
+{
+  "date": "2026-03-30",
+  "title": "经济日报",
+  "subtitle": "聚焦全球经济金融最新动态",
+  "openingDuration": 28.466666666666665,
+  "backgroundAudio": "/public/audio/economy-2026-03-30/00_opening.mp3",
+  "news": [
+    {
+      "id": "1",
+      "title": "黄金突破4520美元/盎司 避险情绪持续升温",
+      "summary": "受中东战争带来的增长风险和避险情绪推动，现货黄金突破4520美元/盎司，纽约期金突破4550美元/盎司，日内涨幅0.57%。",
+      "category": "大宗商品",
+      "source": "新浪财经",
+      "duration": 25.633333333333333,
+      "audio": "/public/audio/economy-2026-03-30/01_news_gold.mp3"
+    },
+    {
+      "id": "2",
+      "title": "伊朗已发动5471次袭击 中东冲突持续升级",
+      "summary": "自2月28日以来，伊朗已对七个阿拉伯国家的美国基地和重要目标发动至少5471次导弹和无人机袭击，冲突挤压全球飞行走廊，影响航空业安全。",
+      "category": "国际局势",
+      "source": "新浪财经",
+      "duration": 23.1,
+      "audio": "/public/audio/economy-2026-03-30/02_news_iran.mp3"
+    },
+    {
+      "id": "3",
+      "title": "离岸人民币升破6.91 美债收益率下跌",
+      "summary": "离岸人民币兑美元升破6.91，日内涨0.15%。美国国债收益率全线下跌，10年期美债收益率跌5.2个基点至4.387%，市场关注点从通胀转向增长风险。",
+      "category": "宏观经济",
+      "source": "新浪财经",
+      "duration": 27.7,
+      "audio": "/public/audio/economy-2026-03-30/03_news_cny.mp3"
+    },
+    {
+      "id": "4",
+      "title": "Mistral AI获8.5亿美元融资 建欧洲AI集群",
+      "summary": "欧洲AI初创公司Mistral AI获得8.5亿美元债务融资，将采购13800块英伟达GB300 GPU，打造欧洲首个AI算力集群，总供电30兆瓦。",
+      "category": "科技融资",
+      "source": "新浪财经",
+      "duration": 26.066666666666666,
+      "audio": "/public/audio/economy-2026-03-30/04_news_mistral.mp3"
+    },
+    {
+      "id": "5",
+      "title": "机器人概念异动 特斯拉Optimus年内量产",
+      "summary": "机器人概念板块午后异动，多股涨停。特斯拉Optimus V3即将发布，年内启动大规模量产，弗里蒙特工厂已改造专用产线，中期规划年产能100万台。",
+      "category": "行业动态",
+      "source": "新浪财经",
+      "duration": 29.966666666666665,
+      "audio": "/public/audio/economy-2026-03-30/05_news_robot.mp3"
+    },
+    {
+      "id": "6",
+      "title": "天津出台政策支持AI智能体与一人公司创业",
+      "summary": "天津滨海高新区拟出台AI智能体与\"一人公司\"培育措施，为AI智能体创业提供专项扶持，支持\"一人成军\"的新型创业模式。",
+      "category": "政策动向",
+      "source": "新浪财经",
+      "duration": 21.333333333333332,
+      "audio": "/public/audio/economy-2026-03-30/06_news_policy.mp3"
+    },
+    {
+      "id": "7",
+      "title": "美银下调海底捞目标价至15.1港元",
+      "summary": "美银证券将海底捞目标价下调8%至15.1港元，维持中性评级。2025年海底捞净利润下跌14%低于预期，毛利率压力可能持续至2026年。",
+      "category": "公司新闻",
+      "source": "新浪财经",
+      "duration": 27.266666666666666,
+      "audio": "/public/audio/economy-2026-03-30/07_news_haidilao.mp3"
+    },
+    {
+      "id": "8",
+      "title": "比亚迪2026年出口目标150万辆",
+      "summary": "比亚迪表示有信心实现2026年150万辆的出口目标，出口占比将超过15%，中国新能源汽车出口继续保持强劲增长势头。",
+      "category": "汽车行业",
+      "source": "新浪财经",
+      "duration": 19.533333333333335,
+      "audio": "/public/audio/economy-2026-03-30/08_news_byd.mp3"
+    },
+    {
+      "id": "9",
+      "title": "中国移动2025年净利1371亿 派息率75%",
+      "summary": "中国移动2025年营收1.05万亿元，净利润1371亿元同比略降0.9%，派息率提升至75%，华泰证券维持买入评级。",
+      "category": "电信行业",
+      "source": "新浪财经",
+      "duration": 26.133333333333333,
+      "audio": "/public/audio/economy-2026-03-30/09_news_chinamobile.mp3"
+    },
+    {
+      "id": "10",
+      "title": "阿里达摩院与东软医疗合作推广AI早筛",
+      "summary": "阿里达摩院与东软医疗达成战略合作，融合平扫CT+AI技术，依托东软全球供应链体系，共同推动多癌早筛AI在全球范围的普及。",
+      "category": "医疗合作",
+      "source": "新浪财经",
+      "duration": 22.5,
+      "audio": "/public/audio/economy-2026-03-30/10_news_medical.mp3"
+    },
+    {
+      "id": "11",
+      "title": "名创优品MINISO FRIENDS海外首店落地马来西亚",
+      "summary": "名创优品MINISO FRIENDS海外首店落地马来西亚，全球化布局加速，目前全球门店达17家，近期接连斩获多项国际设计大奖。",
+      "category": "消费零售",
+      "source": "新浪财经",
+      "duration": 21.533333333333335,
+      "audio": "/public/audio/economy-2026-03-30/11_news_miniso.mp3"
+    },
+    {
+      "id": "12",
+      "title": "中国4款大模型跻身全球前十 智谱登顶",
+      "summary": "ClawBench最新大模型榜单显示，智谱、字节、小米共4款模型进入全球前十，智谱GLM-5-Turbo登顶榜首，字节模型成本最低，小米模型速度最快。",
+      "category": "大模型",
+      "source": "新浪财经",
+      "duration": 29.6,
+      "audio": "/public/audio/economy-2026-03-30/12_news_llm.mp3"
+    },
+    {
+      "id": "13",
+      "title": "今日总结",
+      "summary": "中东冲突推升避险情绪，人民币汇率企稳回升，AI领域表现亮眼，高端制造保持高景气度。",
+      "category": "总结",
+      "source": "新浪财经",
+      "duration": 30.333333333333332,
+      "audio": "/public/audio/economy-2026-03-30/13_summary.mp3"
+    },
+    {
+      "id": "14",
+      "title": "未来展望",
+      "summary": "关注中东局势发展、美联储政策动向、AI产业政策支持、特斯拉机器人量产进度以及一季度经济数据。",
+      "category": "展望",
+      "source": "新浪财经",
+      "duration": 33.53333333333333,
+      "audio": "/public/audio/economy-2026-03-30/14_outlook.mp3"
+    }
+  ],
+  "endingAudio": "/public/audio/economy-2026-03-30/15_ending.mp3",
+  "endingDuration": 5.666666666666667
+}

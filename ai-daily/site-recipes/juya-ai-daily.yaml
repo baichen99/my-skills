@@ -1,0 +1,12 @@
+id: juya-ai-daily
+name: Juya AI Daily
+access:
+  url: https://imjuya.github.io/juya-ai-daily/rss.xml
+  needsBrowser: false
+extraction:
+  type: rss
+  fields:
+    title: "title"
+    url: "link"
+    description: "description"
+    publishedAt: "pubDate"

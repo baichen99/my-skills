@@ -26,6 +26,7 @@ env/
 # Generated reports and exports
 *.html
 info-source-daily-*.md
+info-source-voice-*.md
 ai-daily-*.md
 ai-daily-*.html
 
@@ -33,3 +34,9 @@ ai-daily-*.html
 .env
 .env.*
 *.local
+ai-daily/settings.json
+ai-daily/examples/*.mp3
+
+.claude
+
+node_modules/

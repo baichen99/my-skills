@@ -14,7 +14,7 @@ description: Use when producing a daily brief by aggregating multiple regularly-
 | Recipe、Discovery、抓取与稳定性 | [docs/03-fetch-and-recipes.md](docs/03-fetch-and-recipes.md) |
 | 日报结构、模板、HTML 导出 | [docs/04-daily-output.md](docs/04-daily-output.md) |
 | 原文链接与聚合页 | [docs/05-links-and-aggregation.md](docs/05-links-and-aggregation.md) |
-| **语音：先文字稿，再录音** | [docs/06-voice-and-audio.md](docs/06-voice-and-audio.md)（口播稿：`scripts/daily_to_blog_voice.py`） |
+| **语音：先文字稿，再录音** | [docs/06-voice-and-audio.md](docs/06-voice-and-audio.md)（口播稿：技能内大模型生成；可用 `scripts/daily_to_blog_voice.py` 兜底对照） |
 | 常见错误与备注 | [docs/07-pitfalls.md](docs/07-pitfalls.md) |
 | **「今日」时效与过滤** | [docs/08-timeliness-and-filters.md](docs/08-timeliness-and-filters.md) |
 
@@ -31,15 +31,27 @@ description: Use when producing a daily brief by aggregating multiple regularly-
 
 ### 口播：先文字稿，再录音（禁止颠倒）
 
-3. **第一步**：由日报生成**口播文字稿**（仅生成 `.md`，不生成音频）：
+1. **第一步（推荐）**：由技能内大模型直接读取定稿日报，生成**口播文字稿**（仅生成 `.md`，不生成音频）：
+
+   ```bash
+   # 生成目标：`*-blog-voice.md`（结构必须兼容 voice_to_audio.py）
+   # 由 Agent 内部模型输出并落盘；本地不需要额外调用 LLM API。
+   ```
+
+   得到 `*-blog-voice.md` 后，**审阅、必要时手工编辑**；确保正文已用 `## 正文` + `### 第 N 条` 分条。
+
+   （可选 fallback：如果你仍想用固定规则编译口播，可用下面脚本补一版或做对照）
+
    ```bash
    python scripts/daily_to_blog_voice.py <日报.md>
    ```
-   得到 `*-blog-voice.md`，**审阅、必要时手工编辑**。
-4. **第二步**：文字稿确认后，再生成 **MP3**：
+
+2. **第二步**：文字稿确认后，再生成 **MP3**（TTS 编译）：
+
    ```bash
    python scripts/export_voice_mp3.py <*-blog-voice.md>
    ```
+
    （需本机已配置火山 TTS 凭证。）
 
 `daily_to_blog_voice.py --audio` 可一步生成 MP3，仅作便捷；**默认流程**仍应先完成第 3 步再执行第 4 步。

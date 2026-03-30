@@ -1,0 +1,39 @@
+{
+  "date": "2026-03-30",
+  "title": "AI 日报",
+  "subtitle": "聚焦人工智能领域最新动态",
+  "news": [
+    {
+      "id": "1",
+      "title": "DeepSeek 网页端与APP服务屡现异常，疑似更新模型",
+      "summary": "DeepSeek 网页与App端的聊天服务自昨晚起经历反复的性能异常，截至今日早晨仍未完全恢复，但旧模型的API服务仍保持稳定。用户观察到DeepSeek疑似更新了网页与App端提供服务的模型，大幅提升了文本质量、流畅度以及SVG生成能力。",
+      "category": "行业要闻",
+      "source": "橘鸦AI早报",
+      "duration": 15
+    },
+    {
+      "id": "2",
+      "title": "OpenClaw 更新，集成 xAI 及插件审批功能",
+      "summary": "OpenClaw 近期发布重要更新，集成了xAI的模型支持，同时新增了插件审批功能，提升了安全性和可控性，进一步完善了AI Agent的开发生态。",
+      "category": "产品应用",
+      "source": "橘鸦AI早报",
+      "duration": 10
+    },
+    {
+      "id": "3",
+      "title": "传 OpenAI 拟上线 Codex-only 订阅计划",
+      "summary": "有传闻称OpenAI正在计划推出专门针对开发者的Codex-only订阅计划，提供更高的代码生成配额和专属功能，进一步细分其产品线，满足不同用户群体的需求。",
+      "category": "前瞻与传闻",
+      "source": "橘鸦AI早报",
+      "duration": 10
+    },
+    {
+      "id": "4",
+      "title": "Meta 测试 Avocado 模型，据称性能仍落后",
+      "summary": "Meta正在内部测试代号为Avocado的新一代大模型，但据内部消息称，其性能仍然落后于行业领先水平，Meta在大模型领域的追赶还需要更多时间和投入。",
+      "category": "技术动态",
+      "source": "橘鸦AI早报",
+      "duration": 10
+    }
+  ]
+}

@@ -18,6 +18,11 @@
 4. `## 今日总结`
 5. `## 未来展望`
 
+口径降级规则（强制）：
+
+- `今日重点` 不得包含任何“待核实”条目（包含“证据不足/来源不足/原文链接未解析”等）。
+- 若某条只达到“待核实”，允许进入 `今日资讯`，但必须在该条摘要末尾或描述前缀显式标注 `待核实：xxx`，并降低该条在排序池中的权重（避免与高置信确定结论混排）。
+
 链接要求：
 
 - **主链接必须是原文 URL**（见 [05-links-and-aggregation.md](05-links-and-aggregation.md)）；禁止把聚合页/列表页当作唯一外链
@@ -55,7 +60,7 @@
 使用 info-source-daily 技能生成今天的中文日报。
 主题：AI Agent
 时间范围：最近 24 小时
-来源：Readhub daily, Readhub AI, GitHub Trending, Juya RSS, AI Hub Today
+来源：种子来源（用于起步）：Readhub daily, Readhub AI, GitHub Trending, Juya RSS, AI Hub Today；若成稿时来源多样性底线不达标（独立来源数 < 4 或任一来源占比 > 40%），自动启动 Discovery 扩源，增加至少 2 个新站点/源并完成 recipe 保存与小样本验证。
 条数上限：12
 输出：自动写入 info-source-daily-YYYY-MM-DD.md 和同名 .html 文件
 ```
