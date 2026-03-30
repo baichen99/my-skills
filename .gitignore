@@ -40,3 +40,8 @@ ai-daily/examples/*.mp3
 .claude
 
 node_modules/
+
+# Video render artifacts (do not commit)
+ai-daily/**/*.mp4
+ai-daily/remotion-daily/output/
+ai-daily/remotion-daily/out/
