@@ -45,7 +45,7 @@ npm run render:custom output/my-video.mp4 --props='{"date":"2026-03-30","news": 
 npm run render -- --props=./path/to/your/data.json output/my-video.mp4
 
 # 方式3：使用自动化脚本
-./scripts/generate-daily-video.sh 2026-03-30
+./scripts/generate-daily-video.sh 2026-03-30 economy-daily # topic 可选，默认 daily
 ```
 
 ## 数据格式

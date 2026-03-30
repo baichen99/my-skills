@@ -5,6 +5,7 @@
 输出文件：
 
 - Markdown 格式：`ai-daily-<主题>-YYYY-MM-DD.md`
+- （写入位置）默认写入 `ai-daily/runs/<runId>/` 目录，其中 `runId` 默认形如 `daily-<topic>-YYYY-MM-DD-HHMMSS`
 - **语音稿**（可选）：`*-blog-voice.md`（结构必须兼容 `scripts/voice_to_audio.py`）
 - **录音**（可选）：与语音稿同主文件名、扩展名为 `.mp3`（由 `scripts/voice_to_audio.py` 生成）
 - 位置：当前执行目录（或用户指定目录）

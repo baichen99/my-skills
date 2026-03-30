@@ -14,16 +14,18 @@ export const DailyVideo: React.FC<DailyDataInput> = (raw) => {
 
   // 提示音效：尽量“少量且固定节拍”，避免抢口播。
   const sfxLenFrames = Math.floor(0.35 * fps);
-  const titleSfxInFrame = Math.floor(0.15 * fps);
+  // 切换音效尽量贴近“卡片开始”的瞬间，避免被语音的开头淹没
+  const titleSfxInFrame = 0;
   const titleSfxOutFrame = Math.max(0, Math.floor(titleDuration - 0.35 * fps));
-  const newsSfxInFrame = Math.floor(0.15 * fps);
+  const newsSfxInFrame = 0;
   const newsSfxOutFrameOffset = Math.floor(0.2 * fps);
   const newsSfxLenFrames = Math.floor(0.3 * fps);
-  const endingSfxInFrame = Math.floor(0.15 * fps);
+  const endingSfxInFrame = 0;
   const endingSfxOutFrame = Math.max(0, Math.floor(endingDuration - 0.35 * fps));
 
-  const SFX_VOL_IN = 0.16;
-  const SFX_VOL_OUT = 0.14;
+  // 语音是主音轨；这里的音效用于“切换感”，需要比之前更容易听清
+  const SFX_VOL_IN = 0.35;
+  const SFX_VOL_OUT = 0.28;
 
   return (
     <>

@@ -38,12 +38,14 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+        // 深色模式下用得起来的透明白底在浅色背景里会“发黑/发灰”不清晰
+        // 这里直接提高不透明度，保证文字/卡片边界在浅背景下更干净。
+        backgroundColor: 'rgba(255, 255, 255, 0.78)',
         backdropFilter: 'blur(10px)',
         borderRadius: radiusMap[radius],
         boxShadow: elevationMap[elevation],
         padding: paddingMap[padding],
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        border: '1px solid rgba(15, 23, 42, 0.08)',
         ...style,
       }}
     >

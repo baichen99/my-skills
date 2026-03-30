@@ -17,7 +17,8 @@ export const NewsCard: React.FC<NewsCardProps> = ({ news, theme, index }) => {
   const keyPoints = news.summary
     .split(/[。！？]/)
     .filter((point) => point.trim().length > 0)
-    .slice(0, 3);
+    // 信息密度：给更多要点位
+    .slice(0, 5);
 
   return (
     <AbsoluteFill
@@ -30,8 +31,8 @@ export const NewsCard: React.FC<NewsCardProps> = ({ news, theme, index }) => {
         primaryColor={theme.primaryColor}
         secondaryColor={theme.backgroundColor}
       />
-      <AbsoluteFill style={{ padding: '80px 100px' }}>
-        <Card padding="large" elevation="large">
+      <AbsoluteFill style={{ padding: '64px 72px' }}>
+        <Card padding="medium" elevation="large">
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
               {/* 分类标签 */}
@@ -105,7 +106,11 @@ export const NewsCard: React.FC<NewsCardProps> = ({ news, theme, index }) => {
                         flexShrink: 0,
                       }}
                     />
-                    <Text variant="body" color={theme.textColor} style={{ opacity: 0.9, lineHeight: '1.7' }}>
+                    <Text
+                      variant="body"
+                      color={theme.textColor}
+                      style={{ opacity: 0.95, lineHeight: '1.6', fontSize: 26 }}
+                    >
                       {point.trim()}
                     </Text>
                   </div>
@@ -115,9 +120,18 @@ export const NewsCard: React.FC<NewsCardProps> = ({ news, theme, index }) => {
           </div>
 
           {/* 完整摘要 */}
-          {keyPoints.length < news.summary.split(/[。！？]/).filter(Boolean).length && (
-            <div style={{ marginBottom: 24, padding: '20px', backgroundColor: 'rgba(255,255,255,0.03)', borderRadius: '12px' }}>
-              <Text variant="body" color={theme.textColor} style={{ opacity: 0.8, fontSize: 28, lineHeight: '1.6' }}>
+          {/* 让信息量更多：只要摘要足够长就展示完整摘要（小字号） */}
+          {news.summary.length > 110 && (
+            <div
+              style={{
+                marginBottom: 24,
+                padding: '20px',
+                backgroundColor: 'rgba(15, 23, 42, 0.035)',
+                borderRadius: '12px',
+                border: `1px solid ${theme.primaryColor}18`,
+              }}
+            >
+              <Text variant="body" color={theme.textColor} style={{ opacity: 0.86, fontSize: 24, lineHeight: '1.55' }}>
                 {news.summary}
               </Text>
             </div>

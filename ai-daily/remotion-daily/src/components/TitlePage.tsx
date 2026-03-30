@@ -13,7 +13,8 @@ export const TitlePage: React.FC<TitlePageProps> = ({ data }) => {
   const fadeOut = useFadeInOut(0, 0.5);
 
   const keyFacts = data.news
-    .slice(0, 3)
+    // 开场也提升信息量：展示更多要点
+    .slice(0, 4)
     .map((n) => {
       const summaryFirst =
         n.summary
@@ -109,9 +110,9 @@ export const TitlePage: React.FC<TitlePageProps> = ({ data }) => {
                 marginTop: 48,
                 padding: '22px 26px',
                 backgroundColor: `${data.theme.backgroundColor}80`,
-                border: `1px solid ${data.theme.primaryColor}30`,
+                border: `1px solid ${data.theme.primaryColor}22`,
                 borderRadius: 20,
-                boxShadow: '0 20px 40px rgba(0,0,0,0.25)',
+                boxShadow: '0 18px 34px rgba(15, 23, 42, 0.12)',
               }}
             >
               <Text variant="label" color={data.theme.primaryColor} weight="medium">
@@ -125,7 +126,7 @@ export const TitlePage: React.FC<TitlePageProps> = ({ data }) => {
                     variant="caption"
                     color={data.theme.textColor}
                     weight="medium"
-                    style={{ fontSize: 22, lineHeight: 1.35, opacity: 0.95 }}
+                    style={{ fontSize: 21, lineHeight: 1.35, opacity: 0.96 }}
                   >
                     {f}
                   </Text>

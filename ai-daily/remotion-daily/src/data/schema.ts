@@ -5,8 +5,9 @@ import { zColor } from '@remotion/zod-types';
 export const DEFAULT_THEME = {
   primaryColor: '#165DFF',
   secondaryColor: '#4080FF',
-  backgroundColor: '#0F172A',
-  textColor: '#FFFFFF',
+  // 更偏“明亮信息卡”风格：减少纯黑底观感，提升可读性
+  backgroundColor: '#F6F8FF',
+  textColor: '#0F172A',
 } as const;
 
 export const newsItemSchema = z.object({
