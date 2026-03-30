@@ -1,21 +1,21 @@
----
 id: farmer-com-cn
-name: 中国农业新闻网
+name: 农民日报
 access:
   url: https://www.farmer.com.cn/
   needsBrowser: true
-  waitFor: ".news-list li"
+  waitFor: 3000
 extraction:
-  listSelector: ".news-list li"
+  listSelector: "ul li"
+  filter: 包含即时新闻、时政头条、三农头条、热点推荐板块的li
   fields:
     title:
       selector: "a"
-      attribute: "title"
+      extract: text
     url:
       selector: "a"
-      attribute: "href"
+      attribute: href
     publishedAt:
-      selector: ".time"
+      extract: url
+      regex: "\\d{4}/\\d{2}/\\d{2}"
 pagination:
-  enabled: false
----
+  maxPages: 3

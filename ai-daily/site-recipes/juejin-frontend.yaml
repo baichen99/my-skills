@@ -1,0 +1,17 @@
+# 列表含「热门」与多日文章；成稿前必须用 publishedAt 对照「今日」窗口过滤，勿只取前 N 条。
+# 见 docs/08-timeliness-and-filters.md
+id: juejin-frontend
+name: 掘金前端频道
+access:
+  url: https://juejin.cn/frontend
+  needsBrowser: true
+  waitFor: .entry-list
+extraction:
+  listSelector: .entry-list > .item
+  fields:
+    title: .title::text
+    url: .title::attr(href)
+    description: .abstract::text
+    publishedAt: .date::text
+    author: .username::text
+    source: 掘金

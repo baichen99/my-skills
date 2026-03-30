@@ -1,0 +1,7 @@
+{
+  "VOLC_TTS_APPID": "",
+  "VOLC_TTS_ACCESS_TOKEN": "",
+  "VOLC_TTS_VOICE_TYPE": "zh_male_M392_conversation_wvae_bigtts",
+  "VOLC_TTS_ENCODING": "mp3",
+  "VOLC_TTS_PAUSE_MS": "900"
+}
