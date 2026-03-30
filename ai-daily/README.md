@@ -28,10 +28,7 @@ ai-daily/
 ├── README.md
 ├── .gitignore
 ├── scripts/
-│   ├── render_report_html.py
-│   ├── daily_to_blog_voice.py
 │   ├── voice_to_audio.py
-│   ├── export_voice_mp3.py
 │   └── feed_submitter.py
 └── site-recipes/
     ├── readhub-daily.yaml
@@ -43,7 +40,7 @@ ai-daily/
 ## 环境要求
 
 - Python 3.10+（推荐）
-- `scripts/render_report_html.py`：仅 Python 标准库，无第三方依赖
+- `scripts/render_report_html.py`：已删除（如需 HTML 导出可自行恢复脚本）
 - `scripts/feed_submitter.py`：依赖 `PyYAML`
 
 安装 `PyYAML`：
@@ -54,19 +51,9 @@ python -m pip install pyyaml
 
 ## 快速开始
 
-### 1) 生成 HTML 报告
+### 1) 生成 HTML 报告（已停用）
 
-将已有日报 Markdown 渲染为 HTML：
-
-```bash
-python scripts/render_report_html.py ai-daily-农业领域-2026-03-27.md
-```
-
-自定义输出文件名：
-
-```bash
-python scripts/render_report_html.py ai-daily-农业领域-2026-03-27.md -o ai-daily-农业领域-2026-03-27.html
-```
+`scripts/render_report_html.py` 已删除，默认不生成 `.html`（视频链路不依赖 HTML）。
 
 ### 2) 管理信息源
 
@@ -101,7 +88,7 @@ python scripts/feed_submitter.py verify readhub-daily
 
 ## 日报 Markdown 格式
 
-「今日资讯」中每条为单行：`序号.【分类】摘要 [原文](原文URL)`。HTML 由 `scripts/render_report_html.py` 从该 Markdown 生成。
+「今日资讯」中每条为单行：`序号.【分类】摘要 [原文](原文URL)`。（HTML 导出脚本已删除，默认不生成 `.html`）
 
 收录前须核对**原文发布日期**是否在约定「今日/24h」窗口内，避免混入旧闻，见 [docs/08-timeliness-and-filters.md](docs/08-timeliness-and-filters.md)。
 
@@ -109,20 +96,16 @@ python scripts/feed_submitter.py verify readhub-daily
 
 详见 [docs/06-voice-and-audio.md](docs/06-voice-and-audio.md)。**顺序：先口播文字稿（.md），确认后再生成录音（.mp3）。**
 
-### 从结构化日报生成博客口播稿（推荐）
+### 口播文字稿录音（仅保留 voice_to_audio）
 
-**不要**把带「原文 URL」的日报直接送进 TTS。
+自动兜底脚本 `scripts/daily_to_blog_voice.py` 与 MP3 封装脚本 `scripts/export_voice_mp3.py` 已删除；因此推荐流程是：
+
+1. 先生成并审阅口播文字稿（`.md`），正文需使用 `## 正文` + `### 第一条`、`### 第二条`... 分条结构。
+2. 再直接合成 MP3：
 
 ```bash
-# 1）只生成文字稿
-python scripts/daily_to_blog_voice.py ai-daily-frontend-2026-03-30.md
-# 2）审阅 *-blog-voice.md 后，再合成 MP3
-python scripts/export_voice_mp3.py ai-daily-frontend-2026-03-30-blog-voice.md
+python scripts/voice_to_audio.py <文字稿.md> -o <输出.mp3>
 ```
-
-一键（不推荐跳过审稿）：`python scripts/daily_to_blog_voice.py your-daily.md --audio`
-
-默认在同目录生成 `*-blog-voice.md`（正文无链接、带口语过渡与小结；链接只在附录）。
 
 ### 手工口播稿
 
@@ -130,7 +113,7 @@ python scripts/export_voice_mp3.py ai-daily-frontend-2026-03-30-blog-voice.md
 
 ### 生成录音（火山 OpenSpeech HTTP TTS）
 
-脚本：`scripts/voice_to_audio.py`；一键封装：`scripts/export_voice_mp3.py`（默认输出与 `.md` 同主文件名的 `.mp3`）。
+脚本：`scripts/voice_to_audio.py`（默认输出与 `.md` 同主文件名的 `.mp3`）。
 
 接口与 [鉴权](https://www.volcengine.com/docs/6561/107789)、[HTTP TTS](https://www.volcengine.com/docs/6561/1257584) 一致；[大模型语音合成](https://www.volcengine.com/docs/6561/1257543) 需在控制台开通对应资源。
 
@@ -138,7 +121,6 @@ python scripts/export_voice_mp3.py ai-daily-frontend-2026-03-30-blog-voice.md
 2. **文字稿定稿后**再合成（示例）：
 
 ```bash
-python scripts/export_voice_mp3.py examples/voice-script-sample.md
 python scripts/voice_to_audio.py examples/voice-script-sample.md -o examples/voice-script-sample.mp3
 ```
 

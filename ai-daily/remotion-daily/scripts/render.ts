@@ -4,7 +4,7 @@ import path from 'path';
 import fs from 'fs/promises';
 
 const args = process.argv.slice(2);
-const dataPath = args[0] || './src/data/example.json';
+const dataPath = args[0] || './data/example.json';
 const outputArg = args[1];
 
 const deriveRunId = (propsFile: string) => {

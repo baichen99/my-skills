@@ -12,7 +12,7 @@
 - **语音稿正文未用 `###` 分条**，导致无法插入条间 SSML 停顿
 - **未先确认文字稿就合成 MP3**，导致错误口播难以返工
 - **把列表/热门/排序当作「今日」**，未核对原文发布日期，日报混入旧闻（见 [08-timeliness-and-filters.md](08-timeliness-and-filters.md)）
-- **语音稿定稿后未运行** `voice_to_audio.py` / `export_voice_mp3.py`，缺少 MP3
+- **语音稿定稿后未运行** `voice_to_audio.py`，缺少 MP3
 
 ## Notes
 

@@ -43,8 +43,8 @@
 6. **产出阶段**
    - 按模板生成日报 Markdown（见 [04-daily-output.md](04-daily-output.md)）
    - 保存到 `ai-daily-[subject]-YYYY-MM-DD.md`
-   - 自动调用 `scripts/render_report_html.py` 生成同名 HTML 文件
-   - **语音链路**：须**分两步**（见 [06-voice-and-audio.md](06-voice-and-audio.md)）：① 先生成并确认**口播文字稿** `*-blog-voice.md`；② 再调用 `export_voice_mp3.py` / `voice_to_audio.py` 生成 `.mp3`。**禁止**在未确认文字稿前仅依赖一键合成。
+   - **语音链路（强制顺序，视频链路可不走）**：① 先生成并确认**口播文字稿** `*-blog-voice.md`；② 再调用 `scripts/voice_to_audio.py` 生成 `.mp3`。**禁止**在未确认文字稿前直接合成（否则可能静音/失败）。
+   - **凭证/预检闸门（强制）**：在执行 `python scripts/voice_to_audio.py ...` 前，必须完成 `settings.json`/`VOLC_TTS_*` 凭证预检；若预检失败则停止并输出明确错误原因，避免后续使用缺失音频路径导致静音视频。
    - 给出「抓取失败清单 + 原因」；若有因日期剔除的条目，可附「排除原因：非窗口内发布」
 
 ## 相关文档
