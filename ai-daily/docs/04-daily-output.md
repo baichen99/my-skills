@@ -6,8 +6,9 @@
 
 - Markdown 格式：`ai-daily-<主题>-YYYY-MM-DD.md`
 - （写入位置）默认写入 `ai-daily/runs/<runId>/` 目录，其中 `runId` 默认形如 `daily-<topic>-YYYY-MM-DD-HHMMSS`
-- **语音稿**（可选）：`*-blog-voice.md`（结构必须兼容 `scripts/voice_to_audio.py`）
-- **录音**（可选）：与语音稿同主文件名、扩展名为 `.mp3`（由 `scripts/voice_to_audio.py` 生成）
+- **语音稿**（可选）：`*-blog-voice.md`（结构必须兼容 `scripts/voice_to_audio.ts`）
+- **录音**（可选）：与语音稿同主文件名、扩展名为 `.mp3`（由 `scripts/voice_to_audio.ts` 生成）
+- **结构化中间层（强制）**：`runs/<runId>/news.json`（由 Agent 生成，供脚本做确定性校验与转换）
 - 位置：当前执行目录（或用户指定目录）
 
 输出结构（必须包含）：
@@ -67,6 +68,41 @@
 
 ## HTML 导出（默认不可用）
 
-当前 `scripts/render_report_html.py` 已被删除，因此 HTML 导出步骤默认不可用。
+可使用 `scripts/render_report_html.ts` 导出 HTML（视频链路本身不依赖 HTML）。
 
 视频链路（Remotion）不依赖 HTML：若你只生成视频，请忽略本节；若你需要 HTML，可由你在本地恢复脚本后再按原命令使用。
+
+## Agent JSON Contract（用于脚本）
+
+`news.json` 由 Agent 产出，脚本只验证并转换，不做语义推断。
+
+```json
+{
+  "date": "2026-03-30",
+  "title": "AI 日报",
+  "subtitle": "聚焦AI领域最新动态",
+  "news": [
+    {
+      "idx": 1,
+      "category": "模型进展",
+      "summary": "新闻摘要",
+      "url": "https://example.com/news-1"
+    }
+  ]
+}
+```
+
+字段规则：
+- `date`：`YYYY-MM-DD`
+- `news[].idx`：正整数，建议从 1 递增，需与音频 `news-N.mp3` 对齐
+- `news[].category/summary/url`：必填
+- `news[].title/source/publishTime`：可选
+
+对应脚本命令：
+
+```bash
+bun scripts/build_remotion_daily_props.ts \
+  --news-json ai-daily/runs/<runId>/news.json \
+  --audio-dir ai-daily/runs/<runId>/audio \
+  --out-json ai-daily/runs/<runId>/daily.json
+```

@@ -3,13 +3,38 @@ name: Readhub AI 新闻
 access:
   url: https://readhub.cn/news/ai
   needsBrowser: true
-  waitFor: 2000
+  waitFor:
+    selector: body
+    timeout: 10000
 extraction:
-  listSelector: ".css-1dbjc4n.r-13awgt0.r-18u37iz.r-1w6e6rj"
+  listSelector: "main article, main a[href*='/topic/'], main a[href*='/news/']"
+  fallbackSelectors:
+    listSelector:
+      - ".css-1dbjc4n.r-13awgt0.r-18u37iz.r-1w6e6rj"
+      - "article"
+      - "main li"
   fields:
-    title: ".css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0.css-14m8j6l"
+    title:
+      selector: "h1, h2, h3, a"
+      type: text
+      fallbackSelectors:
+        - ".css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0.css-14m8j6l"
+        - "[title]"
     url:
       selector: "a"
+      type: attribute
       attribute: "href"
-    description: ".css-901oao.css-16my406.r-poiln3.r-1b43r93.r-13hce6t.r-bcqeeo.r-qvutc0"
-    publishedAt: ".css-901oao.css-16my406.r-poiln3.r-1b43r93.r-14yzgew.r-bcqeeo.r-qvutc0"
+      transform: resolveUrl
+      baseUrl: "https://readhub.cn"
+    description:
+      selector: "p, .summary, .description"
+      type: text
+      optional: true
+      fallbackSelectors:
+        - ".css-901oao.css-16my406.r-poiln3.r-1b43r93.r-13hce6t.r-bcqeeo.r-qvutc0"
+    publishedAt:
+      selector: "time, .time, .date"
+      type: text
+      optional: true
+      fallbackSelectors:
+        - ".css-901oao.css-16my406.r-poiln3.r-1b43r93.r-14yzgew.r-bcqeeo.r-qvutc0"

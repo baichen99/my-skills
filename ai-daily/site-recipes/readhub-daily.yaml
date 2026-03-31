@@ -1,0 +1,35 @@
+id: readhub-daily
+name: Readhub 每日早报
+access:
+  url: https://readhub.cn/daily
+  needsBrowser: true
+  waitFor:
+    selector: body
+    timeout: 10000
+extraction:
+  listSelector: "main article, main a[href*='/daily'], main a[href*='/topic/']"
+  fallbackSelectors:
+    listSelector:
+      - "article"
+      - "main li"
+      - "a[href*='/daily/']"
+  fields:
+    title:
+      selector: "h1, h2, h3, a"
+      type: text
+      fallbackSelectors:
+        - "[title]"
+    url:
+      selector: "a"
+      type: attribute
+      attribute: href
+      transform: resolveUrl
+      baseUrl: "https://readhub.cn"
+    description:
+      selector: "p, .summary, .description"
+      type: text
+      optional: true
+    publishedAt:
+      selector: "time, .time, .date"
+      type: text
+      optional: true

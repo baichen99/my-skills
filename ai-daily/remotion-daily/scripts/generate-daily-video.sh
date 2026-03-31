@@ -37,7 +37,7 @@ echo "输出目录: ${RUN_BASE}"
 
 # 1) 渲染（remotion CLI 默认写到 out/DailyVideo.mp4）
 echo "开始渲染视频..."
-npx remotion render src/index.tsx DailyVideo --props="$DATA_FILE"
+bunx remotion render src/index.tsx DailyVideo --props="$DATA_FILE"
 
 # 2) 统一归档到 runs
 if [ ! -f "./out/DailyVideo.mp4" ]; then

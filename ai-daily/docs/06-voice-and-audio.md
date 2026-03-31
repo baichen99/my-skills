@@ -16,11 +16,11 @@
 
    得到 `*-blog-voice.md` 后，**检查措辞、分段、有无误读**；需要可手工编辑该文件。
 
-   （可选 fallback/对照：自动兜底脚本 `scripts/daily_to_blog_voice.py` 已删除；如需口播文字稿请手工编写或由模型直接生成后再合成。）
+   （可选 fallback/对照：自动兜底脚本 `scripts/daily_to_blog_voice.ts` 已删除；如需口播文字稿请手工编写或由模型直接生成后再合成。）
 
 3. **再生成录音**（文字稿确认无误后）：
 
-   `python scripts/voice_to_audio.py <文字稿.md> -o <输出.mp3>`。
+   `bun scripts/voice_to_audio.ts <文字稿.md> -o <输出.mp3>`。
 
 若你走“技能内大模型生成口播”，仍应遵守**先完成第 2 步再执行第 3 步**，避免未审稿就定稿音频。
 
@@ -49,7 +49,7 @@
 为使听感有节奏、条与条可区分，语音稿 **正文**须用 Markdown 三级标题分段：
 
 - `## 正文` 下每一条新闻单独一个小节：`### 第一条`、`### 第二条` …（或等价标题，**必须以 `###` 开头**）。
-- 脚本 `voice_to_audio.py` 会识别多个 `###` 小节，在**小节与小节之间**自动插入 SSML `<break time="…ms"/>`（默认 **900ms**，可用环境变量 `VOLC_TTS_PAUSE_MS` 或 `--pause-ms` 调整）。
+- 脚本 `voice_to_audio.ts` 会识别多个 `###` 小节，在**小节与小节之间**自动插入 SSML `<break time="…ms"/>`（默认 **900ms**，可用环境变量 `VOLC_TTS_PAUSE_MS` 或 `--pause-ms` 调整）。
 - **开场白**、**各条正文**、**收尾**之间也会插入停顿（同一段 `break` 链），保证「开场 → 多条新闻 → 收尾」层次清晰。
 
 若正文只有一段、没有 `###` 分条，则退化为**纯文本合成**（无条间 SSML 停顿）。
@@ -60,10 +60,10 @@
 
 ```bash
 # 在 my-skills/ai-daily 目录下：
-python scripts/voice_to_audio.py ai-daily-<主题>-YYYY-MM-DD-blog-voice.md -o ai-daily-<主题>-YYYY-MM-DD-blog-voice.mp3
+bun scripts/voice_to_audio.ts ai-daily-<主题>-YYYY-MM-DD-blog-voice.md -o ai-daily-<主题>-YYYY-MM-DD-blog-voice.mp3
 ```
 
-**产出阶段约定**：Agent 在完成 `*-blog-voice.md` 后**紧接着**运行 `python scripts/voice_to_audio.py ...`，除非用户明确只要文稿不要音频。
+**产出阶段约定**：Agent 在完成 `*-blog-voice.md` 后**紧接着**运行 `bun scripts/voice_to_audio.ts ...`，除非用户明确只要文稿不要音频。
 
 ### 凭证
 
@@ -71,10 +71,10 @@ python scripts/voice_to_audio.py ai-daily-<主题>-YYYY-MM-DD-blog-voice.md -o a
 
 强制预检（用于避免“没生成音频但流程还继续”）：
 
-1. 在执行 `python scripts/voice_to_audio.py ...` 之前，必须确认 `ai-daily/settings.json` 文件存在且可读，且能解析出至少 `VOLC_TTS_APPID`、`VOLC_TTS_ACCESS_TOKEN`（或 `volc_tts.appid` / `volc_tts.access_token`）。
+1. 在执行 `bun scripts/voice_to_audio.ts ...` 之前，必须确认 `ai-daily/settings.json` 文件存在且可读，且能解析出至少 `VOLC_TTS_APPID`、`VOLC_TTS_ACCESS_TOKEN`（或 `volc_tts.appid` / `volc_tts.access_token`）。
 2. 只要预检失败：停止音频生成，并在输出中写明“缺少 TTS 凭证/未读取到 settings.json”，不要继续生成 `*.mp3` 和后续依赖音频的结果。
 
-提醒：`scripts/voice_to_audio.py` 会从仓库内 `ai-daily/settings.json`（相对 `scripts/voice_to_audio.py` 的上级目录）加载配置，或优先使用环境变量 `VOLC_TTS_*`。
+提醒：`scripts/voice_to_audio.ts` 会从仓库内 `ai-daily/settings.json`（相对 `scripts/voice_to_audio.ts` 的上级目录）加载配置，或优先使用环境变量 `VOLC_TTS_*`。
 
 接口为火山 [OpenSpeech HTTP TTS](https://www.volcengine.com/docs/6561/1257584)（`Authorization: Bearer;token`），[鉴权](https://www.volcengine.com/docs/6561/107789)。若需 [语音合成大模型 2.0](https://www.volcengine.com/docs/6561/1257543) 全量能力，请按官方文档使用 **V3** 或控制台已授权音色。
 

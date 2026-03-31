@@ -16,13 +16,13 @@
 ### 1. 安装依赖
 
 ```bash
-npm install
+bun install
 ```
 
 ### 2. 开发模式预览
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 打开浏览器访问 http://localhost:3000 即可预览视频效果，实时调整组件和动画。
@@ -30,7 +30,7 @@ npm run dev
 ### 3. 渲染示例视频
 
 ```bash
-npm run render:example
+bun run render:example
 ```
 
 渲染完成后视频将输出到 `output/example.mp4`。
@@ -39,10 +39,10 @@ npm run render:example
 
 ```bash
 # 方式1：命令行参数传入
-npm run render:custom output/my-video.mp4 --props='{"date":"2026-03-30","news": [...]}'
+bun run render:custom output/my-video.mp4 --props='{"date":"2026-03-30","news": [...]}'
 
 # 方式2：使用JSON文件
-npm run render -- --props=./path/to/your/data.json output/my-video.mp4
+bun run render -- --props=./path/to/your/data.json output/my-video.mp4
 
 # 方式3：使用自动化脚本
 ./scripts/generate-daily-video.sh 2026-03-30 economy-daily # topic 可选，默认 daily
@@ -100,7 +100,7 @@ remotion-daily/
 │   └── generate-daily-video.sh # 全自动生成脚本
 ├── public/                # 静态资源
 ├── remotion.config.ts     # Remotion配置
-└── tsconfig.json          # TypeScript配置
+└── package.json           # 依赖与脚本配置
 ```
 
 ## 自定义和扩展

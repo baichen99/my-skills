@@ -45,3 +45,5 @@ node_modules/
 ai-daily/**/*.mp4
 ai-daily/remotion-daily/output/
 ai-daily/remotion-daily/out/
+
+runs/

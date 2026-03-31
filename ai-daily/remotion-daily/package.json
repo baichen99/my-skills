@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "packageManager": "bun@latest",
   "scripts": {
     "dev": "remotion studio src/index.tsx",
     "render": "remotion render src/index.tsx DailyVideo",

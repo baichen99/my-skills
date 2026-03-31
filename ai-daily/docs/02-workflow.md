@@ -43,8 +43,10 @@
 6. **产出阶段**
    - 按模板生成日报 Markdown（见 [04-daily-output.md](04-daily-output.md)）
    - 保存到 `ai-daily-[subject]-YYYY-MM-DD.md`
-   - **语音链路（强制顺序，视频链路可不走）**：① 先生成并确认**口播文字稿** `*-blog-voice.md`；② 再调用 `scripts/voice_to_audio.py` 生成 `.mp3`。**禁止**在未确认文字稿前直接合成（否则可能静音/失败）。
-   - **凭证/预检闸门（强制）**：在执行 `python scripts/voice_to_audio.py ...` 前，必须完成 `settings.json`/`VOLC_TTS_*` 凭证预检；若预检失败则停止并输出明确错误原因，避免后续使用缺失音频路径导致静音视频。
+   - **结构化中间层（强制）**：由 Agent 同步产出 `runs/<runId>/news.json`（`date/title/subtitle/news[]`）；后续脚本只消费该 JSON，不再从 Markdown 反向解析资讯列表
+   - **语音链路（强制顺序，视频链路可不走）**：① 先生成并确认**口播文字稿** `*-blog-voice.md`；② 再调用 `scripts/voice_to_audio.ts` 生成 `.mp3`。**禁止**在未确认文字稿前直接合成（否则可能静音/失败）。
+   - **凭证/预检闸门（强制）**：在执行 `bun scripts/voice_to_audio.ts ...` 前，必须完成 `settings.json`/`VOLC_TTS_*` 凭证预检；若预检失败则停止并输出明确错误原因，避免后续使用缺失音频路径导致静音视频。
+   - **视频 props 构建（原子）**：只允许 `bun scripts/build_remotion_daily_props.ts --news-json ... --audio-dir ... --out-json ...`，禁止在脚本里解析日报 Markdown 的 `## 今日资讯`
    - 给出「抓取失败清单 + 原因」；若有因日期剔除的条目，可附「排除原因：非窗口内发布」
 
 ## 相关文档

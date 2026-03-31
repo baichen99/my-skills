@@ -1,0 +1,38 @@
+id: juejin-ai
+name: 掘金 AI 频道
+access:
+  url: https://juejin.cn/ai
+  needsBrowser: true
+  waitFor:
+    selector: body
+    timeout: 10000
+extraction:
+  listSelector: "article, .entry-list > .item"
+  fallbackSelectors:
+    listSelector:
+      - ".entry-list .item"
+      - "main li"
+      - "a[href*='/post/']"
+  fields:
+    title:
+      selector: ".title, h2 a, h3 a, a"
+      type: text
+    url:
+      selector: ".title, h2 a, h3 a, a"
+      type: attribute
+      attribute: href
+      transform: resolveUrl
+      baseUrl: "https://juejin.cn"
+    description:
+      selector: ".abstract, p"
+      type: text
+      optional: true
+    publishedAt:
+      selector: ".date, time"
+      type: text
+      optional: true
+    author:
+      selector: ".username, .author"
+      type: text
+      optional: true
+    source: 掘金
