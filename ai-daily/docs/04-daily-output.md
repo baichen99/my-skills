@@ -106,3 +106,35 @@ bun scripts/build_remotion_daily_props.ts \
   --audio-dir ai-daily/runs/<runId>/audio \
   --out-json ai-daily/runs/<runId>/daily.json
 ```
+
+## 聊天框发送格式（强制）
+
+除定稿 Markdown 外，须在**同一 `runId` 目录**下维护一份**可复制到 IM 的纯文本**（默认文件名 `chat-send.txt`，用户指定则从其）。
+
+要求：
+
+1. **每条资讯必须带完整链接**：「今日重点」与「资讯摘要」中，凡对应日报里的一条，都应写出**可点击的裸 URL**（或 `说明文字 + 空格 + https://...` 一行），不得只写摘要不写链接。
+2. **与日报序号对齐**：`chat-send.txt` 中条目顺序、`news.json` 的 `idx`、`### 第 N 条` 口播、音频 `news-N.mp3` 保持一致。
+3. **可选说明**：若客户端支持 Markdown，可在文件首行注明「支持链接的客户端可整段粘贴」；不支持时裸链通常仍可识别。
+
+示例结构（节选）：
+
+```text
+━━ 今日重点（带链接）━━
+• 主题摘要 https://example.com/a
+
+━━ 资讯摘要（每条含链接）━━
+1.【分类】说明 https://example.com/b
+2.【分类】说明 https://example.com/c
+```
+
+## 用户补充来源时的同步规则（强制）
+
+当用户**追加**新的参考链接（如知乎专栏、X 帖文、博客）作为「新闻来源」时，必须完成**同一套同步**，不得只改 Markdown 不改其余产物：
+
+1. **日报**：在 `## 今日资讯` 增加新序号行，格式仍为一行一条 + `[原文](URL)`；更新 `今日重点` 中的覆盖来源与条目总数。
+2. **`news.json`**：追加 `news[]` 项，`idx` 连续递增，`url` 为用户给出的原文链接（可规范化去掉多余查询参数，除非用户要求保留）。
+3. **口播稿**：在 `## 正文` 下增加对应 `### 第 N 条`；更新「附录：链接与出处」列表。
+4. **音频**：条数变化后**重新**执行 `bun ai-daily/scripts/run.ts audio <*-blog-voice.md> --out-dir ai-daily/runs/<runId>/audio`；若需要单文件分发，可用 `ffmpeg` concat `opening` + `news-1..N` + `ending`（或项目内已有拼接约定）。
+5. **聊天框文件**：更新 `chat-send.txt`，新条目同样**带完整 URL**。
+6. **口径**：聚合报道、外站观点（尤其 X、论坛）应在摘要中标注「外站观点 / 需交叉验证」等，与 [02-workflow.md](02-workflow.md) 的核验要求一致；达不到高置信度的条目不得放入「今日重点」。

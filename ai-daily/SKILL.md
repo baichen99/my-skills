@@ -1,6 +1,6 @@
 ---
 name: ai-daily
-description: Use when producing a daily brief by aggregating multiple regularly-updated sources (RSS, news sites, trending pages), then deduplicating, summarizing, and writing a dated Markdown report file; filter by publication date for "today"; optionally a voice script then MP3 in that order via Volcengine TTS.
+description: Use when producing a daily brief by aggregating multiple regularly-updated sources (RSS, news sites, trending pages), then deduplicating, summarizing, and writing a dated Markdown report file; filter by publication date for "today"; write chat-send.txt with full URLs per item; when user adds supplementary article/social links, sync report, news.json, voice script, audio, and chat-send; optionally voice script then MP3 via Volcengine TTS.
 ---
 
 # AI Daily
@@ -12,7 +12,7 @@ description: Use when producing a daily brief by aggregating multiple regularly-
 | 总览、触发条件、质量要求 | [docs/01-overview.md](docs/01-overview.md) |
 | 流水线（准备→产出） | [docs/02-workflow.md](docs/02-workflow.md) |
 | Recipe、Discovery、抓取与稳定性 | [docs/03-fetch-and-recipes.md](docs/03-fetch-and-recipes.md) |
-| 日报结构、模板、HTML 导出 | [docs/04-daily-output.md](docs/04-daily-output.md) |
+| 日报结构、模板、**聊天框链接**、**补充来源同步**、HTML 导出 | [docs/04-daily-output.md](docs/04-daily-output.md) |
 | 原文链接与聚合页 | [docs/05-links-and-aggregation.md](docs/05-links-and-aggregation.md) |
 | **语音：先文字稿，再录音** | [docs/06-voice-and-audio.md](docs/06-voice-and-audio.md)（口播稿：技能内大模型生成；如需录音仅保留 `scripts/voice_to_audio.ts`） |
 | 常见错误与备注 | [docs/07-pitfalls.md](docs/07-pitfalls.md) |
@@ -38,7 +38,9 @@ description: Use when producing a daily brief by aggregating multiple regularly-
 ### 日报与 HTML
 
 1. 定稿日报：`ai-daily/runs/<runId>/ai-daily-<主题>-YYYY-MM-DD.md`（其中 `runId` 默认形如 `daily-<topic>-YYYY-MM-DD-HHMMSS`；收录前须按 [08-timeliness-and-filters.md](docs/08-timeliness-and-filters.md) 过滤**原文发布日期**在窗口内，避免旧闻混入「今日」）。
-2. HTML 导出脚本可选使用 `scripts/render_report_html.ts`：视频链路本身不依赖 HTML。
+2. **聊天框发送稿（强制）**：同目录 `chat-send.txt`（或用户指定名）——「今日重点」与「资讯摘要」**每条须含完整可点击 URL**，与日报序号、`news.json`、`news-N.mp3` 对齐；规范见 [docs/04-daily-output.md](docs/04-daily-output.md)「聊天框发送格式」。
+3. **用户补充链接（强制同步）**：用户追加知乎/X/博客等来源时，须同步更新日报、`news.json`、口播分段、**重跑** `run.ts audio`、更新 `chat-send.txt`；不得只改 Markdown。见 [docs/04-daily-output.md](docs/04-daily-output.md)「用户补充来源时的同步规则」。
+4. HTML 导出脚本可选使用 `scripts/render_report_html.ts`：视频链路本身不依赖 HTML。
 
 ### 口播：先文字稿，再录音（禁止颠倒）
 
